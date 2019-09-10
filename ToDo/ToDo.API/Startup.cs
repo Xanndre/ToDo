@@ -25,6 +25,7 @@ namespace ToDo.API
             services.AddDbContext<ToDoDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString(DictionaryResources.DbConnection)));
 
+            services.AddRepositories();
             services.AddServices();
             services.AddMapper();
             services.AddDefaultCors();

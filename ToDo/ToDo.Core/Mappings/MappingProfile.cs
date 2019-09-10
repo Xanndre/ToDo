@@ -10,7 +10,8 @@ namespace ToDo.Core.Mappings
         {
             CreateMap<ApplicationUser, LoginDTO>();
             CreateMap<RegisterDTO, ApplicationUser>().ReverseMap();
-                
+
+            CreateMap<Todo, TodoDTO>().ReverseMap();
         }
     }
 }

@@ -12,6 +12,8 @@ using ToDo.Core.Mappings;
 using ToDo.Core.Services;
 using ToDo.Data;
 using ToDo.Data.Entities;
+using ToDo.Repositories.Interfaces;
+using ToDo.Repositories.Repositories;
 
 namespace ToDo.API.Extensions
 {
@@ -20,6 +22,13 @@ namespace ToDo.API.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITodoService, TodoService>();
+        }
+
+        public static void AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<ITodoRepository, TodoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         public static void AddDefaultIdentity(this IServiceCollection services)
