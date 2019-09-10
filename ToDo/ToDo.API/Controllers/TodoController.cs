@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDo.Core.DTOs;
 using ToDo.Core.Interfaces;
@@ -30,7 +28,7 @@ namespace ToDo.API.Controllers
                 var createdTodo = await _todoService.CreateTodo(todo);
                 return Ok(createdTodo);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -44,11 +42,11 @@ namespace ToDo.API.Controllers
                 await _todoService.DeleteTodo(id);
                 return Ok();
             }
-            catch(ArgumentNullException exception)
+            catch (ArgumentNullException exception)
             {
                 return NotFound(exception.Message);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -61,7 +59,7 @@ namespace ToDo.API.Controllers
             {
                 return Ok(await _todoService.GetUserTodos(username));
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 return BadRequest(exception.Message);
             }

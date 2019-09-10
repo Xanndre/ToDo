@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDo.Core.DTOs;
-using ToDo.Core.Interfaces;
 using ToDo.Data.Entities;
 using ToDo.Repositories.Interfaces;
+using ToDo.Core.Interfaces;
+using AutoMapper;
 
 namespace ToDo.Core.Services
 {
