@@ -24,6 +24,8 @@ namespace ToDo.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ToDoDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString(DictionaryResources.DbConnection)));
+
+            services.AddServices();
             services.AddMapper();
             services.AddDefaultCors();
             services.AddDefaultIdentity();

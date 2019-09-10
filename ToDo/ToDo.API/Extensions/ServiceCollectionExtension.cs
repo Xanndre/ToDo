@@ -7,7 +7,9 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using ToDo.Core.Interfaces;
 using ToDo.Core.Mappings;
+using ToDo.Core.Services;
 using ToDo.Data;
 using ToDo.Data.Entities;
 
@@ -15,6 +17,11 @@ namespace ToDo.API.Extensions
 {
     public static class ServiceCollectionExtension
     {
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IAccountService, AccountService>();
+        }
+
         public static void AddDefaultIdentity(this IServiceCollection services)
         {
             services.AddDefaultIdentity<ApplicationUser>()

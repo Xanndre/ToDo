@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace ToDo.Data.Entities
 {
@@ -6,5 +7,6 @@ namespace ToDo.Data.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public ICollection<ToDo> ToDos { get; set; }
     }
 }
