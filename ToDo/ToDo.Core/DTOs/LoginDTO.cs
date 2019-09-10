@@ -6,7 +6,7 @@ namespace ToDo.Core.DTOs
     public class LoginDTO
     {
         [Required]
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [StringLength(30, ErrorMessage = DictionaryResources.PasswordLength, MinimumLength = 6)]

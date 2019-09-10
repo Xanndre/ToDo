@@ -9,5 +9,8 @@ namespace ToDo.Core.DTOs
 
         [Required]
         public string LastName { get; set; }
+
+        [Required]
+        public string Email { get; set; }
     }
 }

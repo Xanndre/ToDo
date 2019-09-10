@@ -7,6 +7,6 @@ namespace ToDo.Data.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<ToDo> ToDos { get; set; }
+        public ICollection<Todo> Todos { get; set; }
     }
 }

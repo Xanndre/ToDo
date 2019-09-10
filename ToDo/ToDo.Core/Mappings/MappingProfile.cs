@@ -9,9 +9,7 @@ namespace ToDo.Core.Mappings
         public MappingProfile()
         {
             CreateMap<ApplicationUser, LoginDTO>();
-            CreateMap<RegisterDTO, ApplicationUser>()
-                .ForMember(c => c.UserName, d => d.MapFrom(e => e.Email))
-                .ReverseMap();
+            CreateMap<RegisterDTO, ApplicationUser>().ReverseMap();
                 
         }
     }

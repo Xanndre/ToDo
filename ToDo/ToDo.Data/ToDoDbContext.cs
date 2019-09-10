@@ -6,6 +6,8 @@ namespace ToDo.Data
 {
     public class ToDoDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Todo> Todos { get; set; }
+
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options) : base(options)
         {
 

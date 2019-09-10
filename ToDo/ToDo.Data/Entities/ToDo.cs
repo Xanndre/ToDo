@@ -2,7 +2,7 @@
 
 namespace ToDo.Data.Entities
 {
-    public class ToDo
+    public class Todo
     {
         [Key]
         public int Id { get; set; }

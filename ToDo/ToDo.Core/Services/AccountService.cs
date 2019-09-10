@@ -65,18 +65,21 @@ namespace ToDo.Core.Services
 
         public async Task<LoginResultDTO> Login(LoginDTO loginDTO)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, false);
+            var result = await _signInManager
+                .PasswordSignInAsync(loginDTO.Username, loginDTO.Password, false, false);
             if (!result.Succeeded)
             {
                 throw new ApplicationException(DictionaryResources.InvalidLoginAttempt);
             }
 
-            var user = _userManager.Users.SingleOrDefault(u => u.Email == loginDTO.Email);
+            var user = _userManager.Users
+                .SingleOrDefault(u => u.UserName == loginDTO.Username);
 
             var loginResult = new LoginResultDTO
             {
-                Token = GenerateJwtToken(loginDTO.Email, user),
-                Id = user.Id
+                Token = GenerateJwtToken(loginDTO.Username, user),
+                Id = user.Id,
+                Username = user.UserName
             };
 
             return loginResult;
@@ -86,7 +89,8 @@ namespace ToDo.Core.Services
         {
             var user = _mapper.Map<ApplicationUser>(registerDTO);
 
-            if (await _userManager.FindByEmailAsync(user.Email) != null)
+            if (await _userManager.FindByEmailAsync(user.Email) != null ||
+                await _userManager.FindByNameAsync(user.UserName) != null)
                 throw new ArgumentException(DictionaryResources.AccountExists);
 
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
