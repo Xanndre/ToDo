@@ -38,24 +38,22 @@ namespace ToDo.Core.Services
             _mapper = mapper;
         }
 
-        public string GenerateJwtToken(string email, ApplicationUser user)
+        public string GenerateJwtToken(ApplicationUser user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_options.JwtKey));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_options.JwtSecret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddDays(Convert.ToDouble(_options.JwtExpireDays));
 
             var token = new JwtSecurityToken
             (
-                _options.JwtIssuer,
-                _options.JwtIssuer,
-                claims,
+                claims: claims,
                 expires: expires,
                 signingCredentials: creds
             );
@@ -77,7 +75,7 @@ namespace ToDo.Core.Services
 
             var loginResult = new LoginResultDTO
             {
-                Token = GenerateJwtToken(loginDTO.Username, user),
+                Token = GenerateJwtToken(user),
                 Id = user.Id,
                 Username = user.UserName
             };
