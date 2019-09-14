@@ -64,7 +64,6 @@ namespace ToDo.API.Extensions
 
         public static void AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
         {
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(cfg =>
